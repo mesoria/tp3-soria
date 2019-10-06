@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Datos personales</h2>
     DNI:
-    <asp:TextBox ID="DNI" Type="number" runat="server"></asp:TextBox><br /><br /><br />
+    <asp:TextBox ID="DNI" AutoPostBack="true" Type="number" runat="server" OnTextChanged="DNI_TextChanged" ></asp:TextBox><br /><br /><br />
     <div class="row">
         <div class="col-md-3">
             <p>Nombre: </p>

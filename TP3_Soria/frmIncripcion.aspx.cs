@@ -13,26 +13,36 @@ namespace TP3_Soria
     public partial class frmIncripcion : System.Web.UI.Page
     {
         Datos datos = new Datos();
-        NegocioPersona negocioPersona = new NegocioPersona();
-        Persona aux = new Persona();
+        NegocioCliente negocioCliente = new NegocioCliente();
+        Cliente aux = new Cliente();
         private bool Completed(string text)
         {
             return text.ToString().Trim() != "";
         }
-        private Persona BuildPerson()
+        private Cliente BuildPerson()
         {
-            aux.nombre = Nombre.Text;
-            aux.nombre = Apellido.Text;
-            aux.nombre = DNI.Text;
-            aux.nombre = Email.Text;
-            aux.nombre = Direccion.Text;
-            aux.nombre = Ciudad.Text;
-            aux.nombre = CP.Text;
-            DateTime hoy = DateTime.Now;
+            aux.DNI         = Convert.ToInt32(DNI.Text);
+            aux.nombre      = Nombre.Text;
+            aux.apellido    = Apellido.Text;
+            aux.email       = Email.Text;
+            aux.direccion   = Direccion.Text;
+            aux.ciudad      = Ciudad.Text;
+            aux.CP          = CP.Text;
+            DateTime hoy    = DateTime.Now;
 
             aux.fechaRegistro = hoy;   //"aaaa/mm/dd");  //Format(hoy.ToShortDateString(), "aaaa/mm/dd");
             return aux;
         }
+        private void SetPerson(Cliente cliente)
+        {
+            Nombre.Text     = cliente.nombre;
+            Apellido.Text   = cliente.apellido;
+            Email.Text      = cliente.email;
+            Direccion.Text  = cliente.direccion;
+            Ciudad.Text     = cliente.ciudad;
+            CP.Text         = cliente.CP;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -42,8 +52,15 @@ namespace TP3_Soria
         {
             if ( Completed(DNI.Text) && Completed(Nombre.Text) && Completed(Apellido.Text) && Completed(Email.Text) && Completed(Direccion.Text) && Completed(Ciudad.Text) && Completed(CP.Text))
             {
-                aux = BuildPerson();
-                negocioPersona.Agregar(aux);
+                try
+                {
+                    aux = BuildPerson();
+                    negocioCliente.Agregar(aux);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
             else
             {
@@ -51,5 +68,22 @@ namespace TP3_Soria
             }
         }
 
+        protected void DNI_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                if (negocioCliente.GetID(Convert.ToInt32( DNI.Text)) != 0)
+                {
+                    aux = negocioCliente.GetCliente(Convert.ToInt32(DNI.Text));
+                    SetPerson(aux);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

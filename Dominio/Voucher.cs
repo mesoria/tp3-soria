@@ -11,8 +11,8 @@ namespace Dominio
         public int ID { get; set; }
         public string Code { get; set; }
         public bool Estado { get; set; }
-        public int CodeCliente { get; set; }
-        public int CodeProducto { get; set; }
+        public Int64 CodeCliente { get; set; }
+        public Int64 CodeProducto { get; set; }
         public DateTime Fecha { get; set; }
     }
 }

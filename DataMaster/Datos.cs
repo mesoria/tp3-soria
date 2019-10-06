@@ -44,7 +44,7 @@ namespace DataMaster
         }
 
         //esto para luego...
-        public void SetearSP(string sp)
+        public void SetearSP(string sp)//quería usarlo pero no llegué.
         {
             comando = new SqlCommand();
             comando.CommandType = System.Data.CommandType.StoredProcedure;

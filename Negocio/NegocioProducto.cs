@@ -12,8 +12,8 @@ namespace Negocio
     {
         public List<Producto> ListarProductos()
         {
-            Datos datos = new Datos();
-            List<Producto> lista = new List<Producto>();
+            Datos datos             = new Datos();
+            List<Producto> lista    = new List<Producto>();
             Producto aux;
             try
             {
@@ -22,11 +22,11 @@ namespace Negocio
                 datos.EjecutarConsulta();
                 while (datos.Reader.Read())
                 {
-                    aux = new Producto();
-                    aux.ID = (Int64)datos.Reader[0];
-                    aux.titulo = (string)datos.Reader[1];
+                    aux             = new Producto();
+                    aux.ID          = (Int64)datos.Reader[0];
+                    aux.titulo      = (string)datos.Reader[1];
                     aux.descripcion = (string)datos.Reader[2];
-                    aux.URLImagen = (string)datos.Reader[3];
+                    aux.URLImagen   = (string)datos.Reader[3];
                     
                     lista.Add(aux);
                 }
@@ -50,11 +50,11 @@ namespace Negocio
             Datos datos = new Datos();
             try
             {
-                datos.SetearConsulta("insert into TP_WEB.dbo.Productos (Titulo, Descripcion, URLImagen) values (@Titulo, @Descripcion, @URLImagen)");
+                datos.SetearConsulta("insert into TP_WEB.dbo.PRODUCTOS (Titulo, Descripcion, URLImagen) values (@Titulo, @Descripcion, @URLImagen)");
                 datos.Comando.Parameters.Clear();
-                datos.Comando.Parameters.AddWithValue("@Titulo", producto.titulo.ToString());
-                datos.Comando.Parameters.AddWithValue("@Descripcion", producto.descripcion.ToString());
-                datos.Comando.Parameters.AddWithValue("@URLImagen", producto.URLImagen.ToString());
+                datos.Comando.Parameters.AddWithValue("@Titulo",        producto.titulo.ToString());
+                datos.Comando.Parameters.AddWithValue("@Descripcion",   producto.descripcion.ToString());
+                datos.Comando.Parameters.AddWithValue("@URLImagen",     producto.URLImagen.ToString());
                 datos.AbrirConexion();
                 datos.EjecutarAccion();
             }
@@ -73,11 +73,11 @@ namespace Negocio
             Datos datos = new Datos();
             try
             {
-                datos.SetearConsulta("update PRODUCTO Set Titulo=@Nombre, Descripcion=@Descripcion, URLImagen=@Imagen Where Id=" + producto.ID);
+                datos.SetearConsulta("update TP_WEB.dbo.PRODUCTOS Set Titulo=@Nombre, Descripcion=@Descripcion, URLImagen=@Imagen Where Id=" + producto.ID);
                 datos.Comando.Parameters.Clear();
-                datos.Comando.Parameters.AddWithValue("@Titulo", producto.titulo.ToString());
-                datos.Comando.Parameters.AddWithValue("@Descripcion", producto.descripcion.ToString());
-                datos.Comando.Parameters.AddWithValue("@URLImagen", producto.URLImagen.ToString());
+                datos.Comando.Parameters.AddWithValue("@Titulo",        producto.titulo.ToString());
+                datos.Comando.Parameters.AddWithValue("@Descripcion",   producto.descripcion.ToString());
+                datos.Comando.Parameters.AddWithValue("@URLImagen",     producto.URLImagen.ToString());
                 datos.AbrirConexion();
                 datos.EjecutarAccion();
             }
@@ -96,7 +96,7 @@ namespace Negocio
             Datos datos = new Datos();
             try
             {
-                datos.SetearConsulta("delete from PERSONAS where Id =" + id);
+                datos.SetearConsulta("delete from TP_WEB.dbo.PRODUCTOS where Id =" + id);
                 datos.AbrirConexion();
                 datos.EjecutarAccion();
             }

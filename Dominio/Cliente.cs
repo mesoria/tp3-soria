@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Persona
+    public class Cliente
     {
-        public int ID { get; set; }
-        public string DNI { get; set; }
+        public Int64 ID { get; set; }
+        public int DNI { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
         //public bool sexo { get; set; }
