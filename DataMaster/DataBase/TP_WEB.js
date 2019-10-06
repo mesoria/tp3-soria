@@ -33,16 +33,16 @@ CREATE TABLE Clientes(
 );
 
 CREATE TABLE Vouchers(
-    Id BIGINT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+    Id INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
     CodigoVoucher VARCHAR(32) UNIQUE DEFAULT CONVERT(VARCHAR(32), HashBytes('MD5', CONVERT(varchar, SYSDATETIME(), 121)), 2) CHECK(LEN(CodigoVoucher) = 32),
     Estado BIT NOT NULL DEFAULT 0 CHECK(Estado IN(1, 0)),
     IdCliente BIGINT DEFAULT NULL FOREIGN KEY REFERENCES Clientes(Id),
     IdProducto BIGINT DEFAULT NULL FOREIGN KEY REFERENCES Productos(Id),
     FechaRegistro DATETIME NULL DEFAULT NULL
 );
---esto agrega mil vouchers automaticamente.Que crack soy...de nada.
+--esto agrega 50 vouchers automaticamente.Que crack soy...de nada.
     DECLARE @cnt INT = 0;
-WHILE @cnt < 1000
+WHILE @cnt < 50
 BEGIN
 INSERT INTO TP_WEB.dbo.Vouchers(CodigoVoucher) VALUES(DEFAULT);
 SET @cnt = @cnt + 1;

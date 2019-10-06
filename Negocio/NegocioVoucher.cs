@@ -10,6 +10,40 @@ namespace Negocio
 {
     public class NegocioVoucher
     {
+        public Voucher BuscarVouchers(string code)
+        {
+            Datos datos = new Datos();
+            //List<Voucher> vouchers = new List<Voucher>();
+            Voucher aux = new Voucher();
+            try
+            {
+                datos.SetearConsulta("Select ID, CodigoVoucher, ESTADO, IDCLIENTE, IDPRODUCTO, FECHAREGISTRO from VOUCHERS where CodigoVoucher= '"+code+"'");
+                datos.AbrirConexion();
+                datos.EjecutarConsulta();
+                while (datos.Reader.Read())
+                {
+                    aux.ID = (int)datos.Reader[0];
+                    aux.Code = (string)datos.Reader[1];
+                    aux.Estado = (bool)datos.Reader[2];
+                    if (!Convert.IsDBNull(datos.Reader[3]))
+                    {
+                        aux.CodeCliente = (int)datos.Reader[3];
+                        aux.CodeProducto = (int)datos.Reader[4];
+                        aux.Fecha = (DateTime)datos.Reader[5];
+                    }
+                    //vouchers.Add(aux);
+                }
+                return aux;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
         public List<Voucher> ListarVouchers()
         {
             Datos datos = new Datos();
@@ -23,12 +57,15 @@ namespace Negocio
                 while (datos.Reader.Read())
                 {
                     aux = new Voucher();
-                    aux.ID           = (Int32)datos.Reader[0];
+                    aux.ID           = (int)datos.Reader[0];
                     aux.Code         = (string)datos.Reader[1];
                     aux.Estado       = (bool)datos.Reader[2];
-                    aux.CodeCliente  = (int)datos.Reader[3];
-                    aux.CodeProducto = (int)datos.Reader[4];
-                    aux.Fecha        = (DateTime)datos.Reader[5];
+                    if (!Convert.IsDBNull(datos.Reader[3]))
+                    {
+                        aux.CodeCliente  = (int)datos.Reader[3];
+                        aux.CodeProducto = (int)datos.Reader[4];
+                        aux.Fecha        = (DateTime)datos.Reader[5];
+                    }
 
                     vouchers.Add(aux);
                 }
