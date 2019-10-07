@@ -50,7 +50,7 @@ namespace Negocio
             Datos datos = new Datos();
             try
             {
-                datos.SetearConsulta("insert into TP_WEB.dbo.PRODUCTOS (Titulo, Descripcion, URLImagen) values (@Titulo, @Descripcion, @URLImagen)");
+                datos.SetearConsulta("insert into SORIA_TP3.dbo.PRODUCTOS (Titulo, Descripcion, URLImagen) values (@Titulo, @Descripcion, @URLImagen)");
                 datos.Comando.Parameters.Clear();
                 datos.Comando.Parameters.AddWithValue("@Titulo",        producto.titulo.ToString());
                 datos.Comando.Parameters.AddWithValue("@Descripcion",   producto.descripcion.ToString());
@@ -73,7 +73,7 @@ namespace Negocio
             Datos datos = new Datos();
             try
             {
-                datos.SetearConsulta("update TP_WEB.dbo.PRODUCTOS Set Titulo=@Nombre, Descripcion=@Descripcion, URLImagen=@Imagen Where Id=" + producto.ID);
+                datos.SetearConsulta("update SORIA_TP3.dbo.PRODUCTOS Set Titulo=@Nombre, Descripcion=@Descripcion, URLImagen=@Imagen Where Id=" + producto.ID);
                 datos.Comando.Parameters.Clear();
                 datos.Comando.Parameters.AddWithValue("@Titulo",        producto.titulo.ToString());
                 datos.Comando.Parameters.AddWithValue("@Descripcion",   producto.descripcion.ToString());
@@ -96,7 +96,7 @@ namespace Negocio
             Datos datos = new Datos();
             try
             {
-                datos.SetearConsulta("delete from TP_WEB.dbo.PRODUCTOS where Id =" + id);
+                datos.SetearConsulta("delete from SORIA_TP3.dbo.PRODUCTOS where Id =" + id);
                 datos.AbrirConexion();
                 datos.EjecutarAccion();
             }

@@ -17,7 +17,7 @@ namespace Negocio
             Cliente aux;
             try
             {
-                datos.SetearConsulta("Select Id, DNI, Nombre, Apellido, Email, Direccion, Ciudad, CodigoPostal, FechaRegistro from TP_WEB.dbo.CLIENTES");
+                datos.SetearConsulta("Select Id, DNI, Nombre, Apellido, Email, Direccion, Ciudad, CodigoPostal, FechaRegistro from SORIA_TP3.dbo.CLIENTES");
                 datos.AbrirConexion();
                 datos.EjecutarConsulta();
                 while (datos.Reader.Read())
@@ -56,7 +56,7 @@ namespace Negocio
             {
                 if (this.GetID( Convert.ToInt32(cliente.DNI)) == 0)
                 {
-                    datos.SetearConsulta("insert into TP_WEB.dbo.CLIENTES (DNI,Nombre,Apellido,Email,Direccion,Ciudad,CodigoPostal,FechaRegistro) values (@DNI, @Nombre, @Apellido, @Email, @Direccion, @Ciudad, @CP, @FR)");
+                    datos.SetearConsulta("insert into SORIA_TP3.dbo.CLIENTES (DNI,Nombre,Apellido,Email,Direccion,Ciudad,CodigoPostal,FechaRegistro) values (@DNI, @Nombre, @Apellido, @Email, @Direccion, @Ciudad, @CP, @FR)");
                     datos.Comando.Parameters.Clear();
                     datos.Comando.Parameters.AddWithValue("@DNI",       cliente.DNI.ToString());
                     datos.Comando.Parameters.AddWithValue("@Nombre",    cliente.nombre.ToString());
@@ -88,7 +88,7 @@ namespace Negocio
             Datos datos = new Datos();
             try
             {
-                datos.SetearConsulta("Select Id, DNI, Nombre, Apellido, Email, Direccion, Ciudad, CodigoPostal, FechaRegistro from TP_WEB.dbo.CLIENTES WHERE DNI=@DNI");
+                datos.SetearConsulta("Select Id, DNI, Nombre, Apellido, Email, Direccion, Ciudad, CodigoPostal, FechaRegistro from SORIA_TP3.dbo.CLIENTES WHERE DNI=@DNI");
                 datos.Comando.Parameters.Clear();
                 datos.Comando.Parameters.AddWithValue("@DNI", DNI);
                 datos.AbrirConexion();
@@ -115,7 +115,7 @@ namespace Negocio
             Datos datos = new Datos();
             try
             {
-                datos.SetearConsulta("Select Id, DNI, Nombre, Apellido, Email, Direccion, Ciudad, CodigoPostal, FechaRegistro from TP_WEB.dbo.CLIENTES WHERE DNI=@DNI");
+                datos.SetearConsulta("Select Id, DNI, Nombre, Apellido, Email, Direccion, Ciudad, CodigoPostal, FechaRegistro from SORIA_TP3.dbo.CLIENTES WHERE DNI=@DNI");
                 datos.Comando.Parameters.Clear();
                 datos.Comando.Parameters.AddWithValue("@DNI", DNI);
                 datos.AbrirConexion();
@@ -152,7 +152,7 @@ namespace Negocio
             Datos datos = new Datos();
             try
             {
-                datos.SetearConsulta("update TP_WEB.dbo.CLIENTES Set DNI=@DNI, Nombre=@Nombre, Apellido=@Apellido, Email=@Email, " +
+                datos.SetearConsulta("update SORIA_TP3.dbo.CLIENTES Set DNI=@DNI, Nombre=@Nombre, Apellido=@Apellido, Email=@Email, " +
                     "Direccion=@Direccion, Ciudad=@Ciudad, CodigoPostal=@CP, FechaRegistro=FechaRegistro Where ID=" + cliente.ID);
                 datos.Comando.Parameters.Clear();
                 datos.Comando.Parameters.AddWithValue("@DNI",           cliente.DNI);
@@ -181,7 +181,7 @@ namespace Negocio
             Datos datos = new Datos();
             try
             {
-                datos.SetearConsulta("delete from TP_WEB.dbo.CLIENTES where Id =" + id);
+                datos.SetearConsulta("delete from SORIA_TP3.dbo.CLIENTES where Id =" + id);
                 datos.AbrirConexion();
                 datos.EjecutarAccion();
             }

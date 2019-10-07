@@ -17,7 +17,7 @@ namespace Negocio
             Voucher aux = new Voucher();
             try
             {
-                datos.SetearConsulta("Select ID, CodigoVoucher, ESTADO, IDCLIENTE, IDPRODUCTO, FECHAREGISTRO from VOUCHERS where CodigoVoucher= '"+code+"'");
+                datos.SetearConsulta("Select ID, CodigoVoucher, ESTADO, IDCLIENTE, IDPRODUCTO, FECHAREGISTRO from SORIA_TP3.dbo.VOUCHERS where CodigoVoucher= '" + code+"'");
                 datos.AbrirConexion();
                 datos.EjecutarConsulta();
                 while (datos.Reader.Read())
@@ -51,7 +51,7 @@ namespace Negocio
             Voucher aux;
             try
             {
-                datos.SetearConsulta("Select ID, CodigoVoucher, ESTADO, IDCLIENTE, IDPRODUCTO, FECHAREGISTRO from TP_WEB.dbo.VOUCHERS");
+                datos.SetearConsulta("Select ID, CodigoVoucher, ESTADO, IDCLIENTE, IDPRODUCTO, FECHAREGISTRO from SORIA_TP3.dbo.VOUCHERS");
                 datos.AbrirConexion();
                 datos.EjecutarConsulta();
                 while (datos.Reader.Read())
@@ -87,7 +87,7 @@ namespace Negocio
             Datos datos = new Datos();
             try
             {
-                datos.SetearConsulta("insert into TP_WEB.dbo.VOUCHERS values (@CODE, @CODIGOVOUCHER, @ESTADO, @IDCLIENTE, @IDPRODUCTOS, @FECHAREGISTRO)");
+                datos.SetearConsulta("insert into SORIA_TP3.dbo.VOUCHERS values (@CODE, @CODIGOVOUCHER, @ESTADO, @IDCLIENTE, @IDPRODUCTOS, @FECHAREGISTRO)");
                 datos.Comando.Parameters.Clear();
                 datos.Comando.Parameters.AddWithValue("@CODE",          voucher.Code.ToString());
                 datos.Comando.Parameters.AddWithValue("@CODIGOVOUCHER", voucher.Estado.ToString());
@@ -113,7 +113,7 @@ namespace Negocio
             Datos datos = new Datos();
             try
             {
-                datos.SetearConsulta("update TP_WEB.dbo.VOUCHERS Set CODIGOVOUCHER=@Codigo, ESTADO=@Estado, IDCLIENTE=@IdCliente, IDPRODUCTOS=@IdProducto, FECHAREGISTRO=@FechaRegistro Where ID=" + voucher.ID);
+                datos.SetearConsulta("update SORIA_TP3.VOUCHERS Set CODIGOVOUCHER=@Codigo, ESTADO=@Estado, IDCLIENTE=@IdCliente, IDPRODUCTOS=@IdProducto, FECHAREGISTRO=@FechaRegistro Where ID=" + voucher.ID);
                 datos.Comando.Parameters.Clear();
                 datos.Comando.Parameters.AddWithValue("@Codigo",        voucher.Code.ToString());
                 datos.Comando.Parameters.AddWithValue("@Estado",        voucher.Estado.ToString());
@@ -138,7 +138,7 @@ namespace Negocio
             Datos datos = new Datos();
             try
             {
-                datos.SetearConsulta("delete from TP_WEB.dbo.VOUCHERS where Id =" + id);
+                datos.SetearConsulta("delete from SORIA_TP3.dbo.VOUCHERS where Id =" + id);
                 datos.AbrirConexion();
                 datos.EjecutarAccion();
             }

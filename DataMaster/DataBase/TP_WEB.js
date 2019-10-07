@@ -1,18 +1,20 @@
 use master
 DECLARE @dbname nvarchar(128)
-SET @dbname = N'TP_WEB'
+SET @dbname = N'SORIA_TP3'
 
 IF(EXISTS(SELECT name FROM master.dbo.sysdatabases WHERE('[' + name + ']' = @dbname
 OR name = @dbname)))
-drop database TP_WEB
+drop database SORIA_TP3
 
 GO
 use master
-go
-CREATE DATABASE TP_WEB
 GO
-USE TP_WEB
-Go
+CREATE DATABASE SORIA_TP3
+GO
+USE SORIA_TP3
+GO
+SET DATEFORMAT 'YMD'
+GO
 CREATE TABLE Productos(
     Id BIGINT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
     Titulo VARCHAR(50) NOT NULL CHECK(LEN(Titulo) > 0),
@@ -40,14 +42,24 @@ CREATE TABLE Vouchers(
     IdProducto BIGINT DEFAULT NULL FOREIGN KEY REFERENCES Productos(Id),
     FechaRegistro DATETIME NULL DEFAULT NULL
 );
---esto agrega 50 vouchers automaticamente.Que crack soy...de nada.
+--esto agrega cien vouchers automaticamente.Que crack soy...de nada.
     DECLARE @cnt INT = 0;
-WHILE @cnt < 50
+WHILE @cnt < 100
 BEGIN
-INSERT INTO TP_WEB.dbo.Vouchers(CodigoVoucher) VALUES(DEFAULT);
+INSERT INTO SORIA_TP3.dbo.Vouchers(CodigoVoucher) VALUES(DEFAULT);
 SET @cnt = @cnt + 1;
 WAITFOR DELAY '00:00:00.002'
 END;
 
+--select * from Vouchers
+--select * from Productos
+--select * from Clientes
 
-select count(id) from Vouchers
+INSERT INTO SORIA_TP3.dbo.Productos(Titulo, Descripcion, URLImagen) VALUES('Disco Sólido', 'Disco Ssd 120GB Kingston Mod. A400', 'https://http2.mlstatic.com/kingston-disco-ssd-120gb-a400-estado-solido-mkm-D_NQ_NP_703251-MLA31117941996_062019-W.webp');
+INSERT INTO SORIA_TP3.dbo.Productos(Titulo, Descripcion, URLImagen) VALUES('Gabinete Gamer', 'Gabinete Sentey iluminación LED, acrílico', 'https://http2.mlstatic.com/gabinete-gaming-sentey-stealth-ii-led-blue-usb-30-acrilico-D_NQ_NP_863800-MLA31459885093_072019-W.webp');
+INSERT INTO SORIA_TP3.dbo.Productos(Titulo, Descripcion, URLImagen) VALUES('Teclado y Mouse Gamer', 'Teclado y Mouse Gamer USB iluminado', 'https://http2.mlstatic.com/teclado-y-mouse-gamer-usb-retro-iluminado-led-2400dpi-combo-kit-D_NQ_NP_827235-MLA31036328746_062019-O.webp');
+INSERT INTO SORIA_TP3.dbo.Productos(Titulo, Descripcion, URLImagen) VALUES('Auriculares Gaming', 'Auriculares varios colores según disponibilidad', 'https://http2.mlstatic.com/auriculares-bluetooth-super-bajos-vincha-garantia-gamer24hs-D_NQ_NP_830033-MLA32374309860_092019-F.webp');
+INSERT INTO SORIA_TP3.dbo.Productos(Titulo, Descripcion, URLImagen) VALUES('Auriculares Gamer', 'Auriculares Starwave con micrófono stereo', 'https://http2.mlstatic.com/D_Q_NP_854864-MLA31352915260_072019-AB.webp');
+INSERT INTO SORIA_TP3.dbo.Productos(Titulo, Descripcion, URLImagen) VALUES('Teclado y mouse Genius', 'Kit teclado y mouse inalambrico Slimstar', 'https://http2.mlstatic.com/kit-teclado-mouse-inalambrico-genius-slimstar-8006-smart-tv-D_NQ_NP_946247-MLA31023120490_062019-V.webp');
+
+
