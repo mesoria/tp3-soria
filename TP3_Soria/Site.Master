@@ -52,8 +52,8 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Inicio</a></li>
-                        <li><a runat="server" href="~/About">Ingresar Voucher</a></li>
-                        <li><a runat="server" href="~/Contact">Contacto</a></li>
+                        <li><a runat="server" href="~/Voucher">Ingresar Voucher</a></li>
+                        <li><a runat="server" href="~/Premios">Sorteo</a></li>
                     </ul>
                 </div>
             </div>

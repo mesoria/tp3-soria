@@ -10,6 +10,6 @@
 namespace TP3_Soria {
     
     
-    public partial class Contact {
+    public partial class Premios {
     }
 }

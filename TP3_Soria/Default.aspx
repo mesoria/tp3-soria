@@ -41,7 +41,7 @@
     </div>
     <div class="jumbotron">
         <p class="lead">Si ya viste mis videos y contas con un <i>Voucher</i> Ingresalo para participar de fabulosos premios.</p>
-        <p><a runat="server" href="~/About.aspx" class="btn btn-primary btn-lg">Ingresar Voucher &raquo;</a></p>
+        <p><a runat="server" href="~/Premios.aspx" class="btn btn-primary btn-lg">Participar &raquo;</a></p>
     </div>
 
 </asp:Content>

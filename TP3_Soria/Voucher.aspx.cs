@@ -11,20 +11,23 @@ namespace TP3_Soria
 {
     public partial class About : Page
     {
+        private readonly NegocioVoucher NegocioVoucher = new NegocioVoucher();
+        private readonly NegocioProducto NegocioP = new NegocioProducto();
         public List<Producto> Productos{ get; set; }
+        public Producto producto { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                NegocioVoucher negocioV = new NegocioVoucher();
-                grid.DataSource = negocioV.ListarVouchers();
-                grid.DataBind();
-                NegocioProducto negocioP = new NegocioProducto();
-                Productos = negocioP.ListarProductos();
+                var prodSeleccionado = Convert.ToInt32(Request.QueryString["idprd"]);
+                Productos = NegocioP.ListarProductos();
+                producto  = Productos.Find(J => J.ID == prodSeleccionado);
+
+                //grid.DataSource = NegocioVoucher.ListarVouchers();
+                //grid.DataBind();
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
 
@@ -33,12 +36,11 @@ namespace TP3_Soria
         {
             try
             {
-                NegocioVoucher negocioVoucher = new NegocioVoucher();
                 var code = CodigoVoucher.Value;
-                Voucher voucher = negocioVoucher.BuscarVouchers(code);
+                Voucher voucher = NegocioVoucher.BuscarVouchers(code);
                 if (voucher.Code != null)
                 {
-                    Response.Redirect("/frmIncripcion.aspx");
+                    Response.Redirect("/Inscripcion.aspx");
                 }
                 else
                 {

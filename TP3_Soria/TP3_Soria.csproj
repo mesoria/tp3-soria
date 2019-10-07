@@ -105,7 +105,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
+    <Content Include="Voucher.aspx" />
     <Content Include="Premios.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -115,7 +115,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="frmIncripcion.aspx" />
+    <Content Include="Inscripcion.aspx" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -162,12 +162,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
+    <Compile Include="Voucher.aspx.cs">
+      <DependentUpon>Voucher.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
+    <Compile Include="Voucher.aspx.designer.cs">
+      <DependentUpon>Voucher.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Premios.aspx.cs">
@@ -184,12 +184,12 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="frmIncripcion.aspx.cs">
-      <DependentUpon>frmIncripcion.aspx</DependentUpon>
+    <Compile Include="Inscripcion.aspx.cs">
+      <DependentUpon>Inscripcion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="frmIncripcion.aspx.designer.cs">
-      <DependentUpon>frmIncripcion.aspx</DependentUpon>
+    <Compile Include="Inscripcion.aspx.designer.cs">
+      <DependentUpon>Inscripcion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

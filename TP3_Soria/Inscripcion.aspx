@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmIncripcion.aspx.cs" Inherits="TP3_Soria.frmIncripcion" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Inscripcion.aspx.cs" Inherits="TP3_Soria.frmIncripcion" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Datos personales</h2>
     DNI:
