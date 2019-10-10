@@ -87,13 +87,12 @@ namespace Negocio
             Datos datos = new Datos();
             try
             {
-                datos.SetearConsulta("insert into SORIA_TP3.dbo.VOUCHERS values (@CODE, @CODIGOVOUCHER, @ESTADO, @IDCLIENTE, @IDPRODUCTOS, @FECHAREGISTRO)");
+                datos.SetearConsulta("insert into SORIA_TP3.dbo.VOUCHERS values (@CODIGOVOUCHER, @ESTADO, @IDCLIENTE, @IDPRODUCTO, @FECHAREGISTRO)");
                 datos.Comando.Parameters.Clear();
-                datos.Comando.Parameters.AddWithValue("@CODE",          voucher.Code.ToString());
-                datos.Comando.Parameters.AddWithValue("@CODIGOVOUCHER", voucher.Estado.ToString());
-                datos.Comando.Parameters.AddWithValue("@ESTADO",        voucher.CodeCliente.ToString());
-                datos.Comando.Parameters.AddWithValue("@IDCLIENTE",     voucher.CodeProducto.ToString());
-                datos.Comando.Parameters.AddWithValue("@IDPRODUCTOS",   voucher.Fecha);
+                datos.Comando.Parameters.AddWithValue("@CODIGOVOUCHER", voucher.Code.ToString());
+                datos.Comando.Parameters.AddWithValue("@ESTADO",        voucher.Estado.ToString());
+                datos.Comando.Parameters.AddWithValue("@IDCLIENTE",     voucher.CodeCliente.ToString());
+                datos.Comando.Parameters.AddWithValue("@IDPRODUCTO",    voucher.CodeProducto.ToString());
                 datos.Comando.Parameters.AddWithValue("@FECHAREGISTRO", voucher.Fecha);
                 datos.AbrirConexion();
                 datos.EjecutarAccion();
@@ -113,13 +112,13 @@ namespace Negocio
             Datos datos = new Datos();
             try
             {
-                datos.SetearConsulta("update SORIA_TP3.VOUCHERS Set CODIGOVOUCHER=@Codigo, ESTADO=@Estado, IDCLIENTE=@IdCliente, IDPRODUCTOS=@IdProducto, FECHAREGISTRO=@FechaRegistro Where ID=" + voucher.ID);
+                datos.SetearConsulta("update SORIA_TP3.dbo.VOUCHERS Set CODIGOVOUCHER=@Codigo, ESTADO=@Estado, IDCLIENTE=@IdCliente, IDPRODUCTO=@IdProducto, FECHAREGISTRO=@FechaRegistro Where ID=" + voucher.ID);
                 datos.Comando.Parameters.Clear();
                 datos.Comando.Parameters.AddWithValue("@Codigo",        voucher.Code.ToString());
                 datos.Comando.Parameters.AddWithValue("@Estado",        voucher.Estado.ToString());
                 datos.Comando.Parameters.AddWithValue("@IdCliente",     voucher.CodeCliente.ToString());
                 datos.Comando.Parameters.AddWithValue("@IdProducto",    voucher.CodeProducto.ToString());
-                datos.Comando.Parameters.AddWithValue("@FechaRegistro", voucher.Fecha.ToString());
+                datos.Comando.Parameters.AddWithValue("@FechaRegistro", voucher.Fecha.ToUniversalTime());
                 datos.AbrirConexion();
                 datos.EjecutarAccion();
             }

@@ -15,11 +15,12 @@ namespace TP3_Soria
         private readonly NegocioProducto NegocioP = new NegocioProducto();
         public List<Producto> Productos{ get; set; }
         public Producto producto { get; set; }
+        int prodSeleccionado;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                var prodSeleccionado = Convert.ToInt32(Request.QueryString["idprd"]);
+                prodSeleccionado = Convert.ToInt32(Request.QueryString["idprd"]);
                 Productos = NegocioP.ListarProductos();
                 producto  = Productos.Find(J => J.ID == prodSeleccionado);
 
@@ -40,11 +41,20 @@ namespace TP3_Soria
                 Voucher voucher = NegocioVoucher.BuscarVouchers(code);
                 if (voucher.Code != null)
                 {
-                    Response.Redirect("/Inscripcion.aspx");
+                    if( !voucher.Estado )
+                    {
+                        voucher.CodeProducto = producto.ID;
+                        Session["Voucher" + Session.SessionID] = voucher;
+                        Response.Redirect("/Inscripcion.aspx");
+                    }
+                    else
+                    {
+                        //El voucher existe pero esta usado.
+                    }
                 }
                 else
                 {
-                    Response.Redirect("/Default.aspx");
+                    Response.Redirect("/Default.aspx");//No existe ese voucher.
                 }
             }
             catch (Exception ex)

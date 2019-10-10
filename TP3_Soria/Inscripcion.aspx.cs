@@ -13,25 +13,27 @@ namespace TP3_Soria
     public partial class frmIncripcion : System.Web.UI.Page
     {
         Datos datos = new Datos();
-        NegocioCliente negocioCliente = new NegocioCliente();
-        Cliente aux = new Cliente();
+        NegocioCliente NegocioCliente = new NegocioCliente();
+        NegocioVoucher NegocioVoucher = new NegocioVoucher();
+        Cliente cliente = new Cliente();
+        Voucher voucher = new Voucher();
         private bool Completed(string text)
         {
             return text.ToString().Trim() != "";
         }
         private Cliente BuildPerson()
         {
-            aux.DNI         = Convert.ToInt32(DNI.Text);
-            aux.nombre      = Nombre.Text;
-            aux.apellido    = Apellido.Text;
-            aux.email       = Email.Text;
-            aux.direccion   = Direccion.Text;
-            aux.ciudad      = Ciudad.Text;
-            aux.CP          = CP.Text;
+            cliente.DNI         = Convert.ToInt32(DNI.Text);
+            cliente.nombre      = Nombre.Text;
+            cliente.apellido    = Apellido.Text;
+            cliente.email       = Email.Text;
+            cliente.direccion   = Direccion.Text;
+            cliente.ciudad      = Ciudad.Text;
+            cliente.CP          = CP.Text;
             DateTime hoy    = DateTime.Now;
 
-            aux.fechaRegistro = hoy;   //"aaaa/mm/dd");  //Format(hoy.ToShortDateString(), "aaaa/mm/dd");
-            return aux;
+            cliente.fechaRegistro = hoy;   //"aaaa/mm/dd");  //Format(hoy.ToShortDateString(), "aaaa/mm/dd");
+            return cliente;
         }
         private void SetPerson(Cliente cliente)
         {
@@ -45,7 +47,7 @@ namespace TP3_Soria
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            voucher = (Voucher)Session["Voucher" + Session.SessionID];
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -54,8 +56,18 @@ namespace TP3_Soria
             {
                 try
                 {
-                    aux = BuildPerson();
-                    negocioCliente.Agregar(aux);
+                    cliente = BuildPerson();
+                    Cliente aux = NegocioCliente.GetCliente(Convert.ToInt32(DNI.Text));
+                    if ( aux.ID == 0)
+                    {
+                        NegocioCliente.Agregar(cliente);
+                    }
+                    cliente = NegocioCliente.GetCliente(Convert.ToInt32(cliente.DNI.ToString()));
+                    voucher.CodeCliente = cliente.ID;
+                    voucher.Estado = true;
+                    DateTime hoy = DateTime.Now;
+                    voucher.Fecha = hoy;
+                    NegocioVoucher.Modificar(voucher);
                 }
                 catch (Exception ex)
                 {
@@ -72,11 +84,14 @@ namespace TP3_Soria
         {
             try
             {
-                
-                if (negocioCliente.GetID(Convert.ToInt32( DNI.Text)) != 0)
+                if (DNI.Text.Length > 8)
                 {
-                    aux = negocioCliente.GetCliente(Convert.ToInt32(DNI.Text));
-                    SetPerson(aux);
+                    DNI.Text = DNI.Text.Substring(0, 8);
+                }
+                if (NegocioCliente.GetID(Convert.ToInt32( DNI.Text)) != 0)
+                {
+                    cliente = NegocioCliente.GetCliente(Convert.ToInt32(DNI.Text));
+                    SetPerson(cliente);
                 }
             }
             catch (Exception ex)
