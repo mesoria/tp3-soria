@@ -48,6 +48,12 @@ namespace TP3_Soria
         protected void Page_Load(object sender, EventArgs e)
         {
             voucher = (Voucher)Session["Voucher" + Session.SessionID];
+            if (voucher == null)
+            {
+                //Por alguna manera no existe el Voucher.
+                Session["Error" + Session.SessionID] = "Ups, Todavia no has elegido un premio. Apurate!!!";
+                Response.Redirect("frmLog.aspx");
+            }
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -68,15 +74,23 @@ namespace TP3_Soria
                     DateTime hoy = DateTime.Now;
                     voucher.Fecha = hoy;
                     NegocioVoucher.Modificar(voucher);
+
+                    Session["Error" + Session.SessionID] = 0;
+                    Session["Completado" + Session.SessionID] = cliente.nombre +", ah realizado con exito su inscripción al sortéo SEGUÍ PARTICIPANDO.";
+                    Session["Usuario" + Session.SessionID] = "Recuerde que puede tener más chances ingresando otros Voucher.";
+                    Response.Redirect("/Inscripcion.aspx");
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    //Error.
+                    Session["Error" + Session.SessionID] = ex;
+                    Response.Redirect("frmLog.aspx");
                 }
             }
             else
             {
-
+                //Todos los datos son necesarios.
+                //No me salió el modal...
             }
         }
 
@@ -96,8 +110,9 @@ namespace TP3_Soria
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                //Error.
+                Session["Error" + Session.SessionID] = ex;
+                Response.Redirect("frmLog.aspx");
             }
         }
     }

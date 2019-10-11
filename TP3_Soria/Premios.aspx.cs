@@ -21,7 +21,8 @@ namespace TP3_Soria
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session["Error" + Session.SessionID] = ex;
+                Response.Redirect("frmLog.aspx");
             }
         }
     }
