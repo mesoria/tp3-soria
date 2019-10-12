@@ -17,7 +17,7 @@
                 <p>Apellido: </p>
                 <asp:TextBox ID="Apellido" Type="text" runat="server"></asp:TextBox><br /><br />
                 <p>Dirección: </p>
-                <asp:TextBox ID="Direccion" runat="server"></asp:TextBox>
+                <asp:TextBox ID="Direccion" runat="server"></asp:TextBox><br /><br />
                 <p>Codigo Postal: </p>
                 <asp:TextBox ID="CP" runat="server"></asp:TextBox>
             </div>

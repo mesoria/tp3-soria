@@ -15,14 +15,17 @@ namespace TP3_Soria
         public List<Producto> Productos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            if (!IsPostBack)
             {
-                Productos = NegocioProducto.ListarProductos();
-            }
-            catch (Exception ex)
-            {
-                Session["Error" + Session.SessionID] = ex;
-                Response.Redirect("frmLog.aspx");
+                try
+                {
+                    Productos = NegocioProducto.ListarProductos();
+                }
+                catch (Exception ex)
+                {
+                    Session["Error" + Session.SessionID] = ex;
+                    Response.Redirect("frmLog.aspx");
+                }
             }
         }
     }

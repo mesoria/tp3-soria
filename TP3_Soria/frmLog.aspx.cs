@@ -11,25 +11,39 @@ namespace TP3_Soria
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string mensaje;
-            if (Session["Error" + Session.SessionID] == null)
+
+            /*
+            if (!IsPostBack)
             {
-                mensaje = "Ups, No deberías estar aquí.";
+                try
+                {
+                    var session = Session["Error" + Session.SessionID];
+                    if ( session == null)
+                    {
+                        logInfo.Text = "Ups, No deberías estar aquí.";
+                    }
+                    else if ( session.ToString() == "0")
+                    {
+                        logInfo.Text = Session["Usuario" + Session.SessionID].ToString();
+                        logInfo.Text = Session["UsuarioCompletado" + Session.SessionID].ToString();
+                    }
+                    else
+                    {
+                        logInfo.Text = Session["Error" + Session.SessionID].ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Session["Error" + Session.SessionID] = ex;
+                    Response.Redirect("/Premios.aspx");
+                }
             }
-            else if ((int)Session["Error" + Session.SessionID] == 0)
-            {
-                mensaje = (string)Session["Usuario" + Session.SessionID];
-                mensaje = (string)Session["UsuarioCompletado" + Session.SessionID];
-            }
-            else
-            {
-                mensaje = (string)Session["Error" + Session.SessionID];
-            }
+            */
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Inscripcion.aspx");
+            Response.Redirect("/Premios.aspx");
         }
     }
 }

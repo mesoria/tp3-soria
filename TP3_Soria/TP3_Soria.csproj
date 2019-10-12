@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="frmLog.aspx" />
+    <Content Include="TheEnd.aspx" />
     <Content Include="Voucher.aspx" />
     <Content Include="Premios.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -169,6 +170,13 @@
     </Compile>
     <Compile Include="frmLog.aspx.designer.cs">
       <DependentUpon>frmLog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TheEnd.aspx.cs">
+      <DependentUpon>TheEnd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TheEnd.aspx.designer.cs">
+      <DependentUpon>TheEnd.aspx</DependentUpon>
     </Compile>
     <Compile Include="Voucher.aspx.cs">
       <DependentUpon>Voucher.aspx</DependentUpon>
